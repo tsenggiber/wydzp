@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>原來你在做這個</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 版面：上方是收聽分流，下方是一集一張「來賓工作卡」，新的在上 */
+  --paper:#f4f2ee;
+  --card:#ffffff;
+  --ink:#1d2430;
+  --muted:#5f6876;
+  --line:#dcd8d0;
+  --signal:#c8372d;
+  --signal-ink:#ffffff;
+  --tint:#ebe6de;
+  --display:"Noto Serif TC","Songti TC",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14181f;--card:#1c222b;--ink:#ece9e3;--muted:#a3abb7;--line:#2e3641;
+    --signal:#e0574c;--signal-ink:#ffffff;--tint:#252b34;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14181f;--card:#1c222b;--ink:#ece9e3;--muted:#a3abb7;--line:#2e3641;
+  --signal:#e0574c;--signal-ink:#ffffff;--tint:#252b34;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:6px}
+.wrap{max-width:680px;margin:0 auto;padding:28px 18px 56px;display:flex;flex-direction:column;gap:40px}
+
+/* 節目頭 */
+.hero{display:flex;flex-direction:column;gap:10px}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--signal)}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,9vw,48px);line-height:1.2;margin:0;text-wrap:balance}
+.lead{margin:0;font-size:17px;max-width:34em}
+.host{margin:0;font-size:14px;color:var(--muted)}
+
+/* 平台分流 */
+.platforms{display:flex;flex-direction:column;gap:10px}
+.platforms .label{font-size:13px;color:var(--muted);font-weight:500}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.pgrid a{display:flex;align-items:center;gap:10px;min-height:52px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);text-decoration:none;font-weight:700;font-size:15px}
+.pgrid a .dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--c)}
+.pgrid a.main{grid-column:1/-1;justify-content:center;background:var(--signal);border-color:var(--signal);color:var(--signal-ink);font-size:17px;min-height:56px}
+
+/* 集數 */
+h2{font-family:var(--display);font-weight:900;font-size:24px;margin:0;text-wrap:balance}
+.eps{display:flex;flex-direction:column;gap:18px}
+.jump{display:flex;flex-wrap:wrap;gap:8px}
+.jump a{font-size:14px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);text-decoration:none;background:var(--card);font-variant-numeric:tabular-nums}
+
+.ep{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;scroll-margin-top:16px}
+.ep-head{padding:18px 18px 14px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.meta{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta .no{font-weight:700;color:var(--signal);letter-spacing:.06em}
+.ep h3{font-family:var(--display);font-weight:900;font-size:21px;line-height:1.4;margin:0;text-wrap:balance}
+.who{display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--tint);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-size:19px;color:var(--signal);flex:none}
+.who b{display:block;font-size:16px;line-height:1.3}
+.who span{font-size:14px;color:var(--muted);line-height:1.4;display:block}
+
+.ep-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px}
+.ep-body p{margin:0}
+.sub{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin-bottom:-6px}
+.points{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.points li{padding-left:14px;border-left:3px solid var(--signal);line-height:1.6}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px}
+.actions a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;border:1px solid var(--line);background:var(--paper)}
+.actions a.listen{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.actions a.give{background:var(--signal);color:var(--signal-ink);border-color:var(--signal)}
+.src{font-size:12px;color:var(--muted);line-height:1.6}
+.src a{color:var(--muted)}
+
+.ep.soon .ep-head{background:var(--tint)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--signal);color:var(--signal-ink);letter-spacing:.06em}
+.note{font-size:13px;color:var(--muted)}
+
+footer{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
+footer b{color:var(--ink)}
+@media (max-width:360px){.pgrid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">PODCAST · 訪談節目</div>
+    <h1>原來你在做這個</h1>
+    <p class="lead">每一集找一位在自己行業裡認真做事的人，聊他每天在做什麼、這行真實的樣子。</p>
+    <p class="host">主持人 子柏</p>
+  </header>
+
+  <nav class="platforms" aria-label="選擇收聽平台">
+    <div class="label">選你習慣的平台收聽</div>
+    <div class="pgrid">
+      <a class="main" href="https://open.firstory.fm/user/cmp20wl3c0dck01wd58iuanfn">▶ 網頁直接聽（所有平台）</a>
+      <a href="https://www.youtube.com/@WYDZP" style="--c:#ff0000"><span class="dot"></span>YouTube</a>
+      <a href="https://podcasts.apple.com/tw/podcast/id6828685996" style="--c:#9b4dde"><span class="dot"></span>Apple Podcasts</a>
+      <a href="https://open.spotify.com/show/7EGUvdtVhwmiSWgUsp4kiA" style="--c:#1db954"><span class="dot"></span>Spotify</a>
+      <a href="https://podcast.kkbox.com/tw/channel/P_NxOT1b7808rfP76C" style="--c:#09cef6"><span class="dot"></span>KKBOX</a>
+      <a href="https://pca.st/pyt0hct4" style="--c:#f43e37"><span class="dot"></span>Pocket Casts</a>
+    </div>
+  </nav>
+
+  <section class="eps" aria-labelledby="h-eps">
+    <h2 id="h-eps">每一集的來賓</h2>
+    <div class="jump" aria-label="跳到集數">
+      <a href="#ep4">EP4 樂園</a>
+      <a href="#ep3">EP3 無人機</a>
+      <a href="#ep2">EP2 碾米廠</a>
+      <a href="#ep1">EP1 家具</a>
+      <a href="#next">預告</a>
+    </div>
+
+    <!-- 下一集 -->
+    <article class="ep soon" id="next">
+      <div class="ep-head">
+        <div class="meta"><span class="no">預告</span><span class="badge">準備中</span></div>
+        <h3>陪一個家走很長的路：心路基金會在做什麼？</h3>
+        <div class="who">
+          <div><b>楊玉玲</b><span>心路社會福利基金會 處長</span></div>
+        </div>
+      </div>
+      <div class="ep-body">
+        <p>心路是台灣第一個由障礙者家長發起的社福組織，1987 年成立，陪伴智能障礙者從早期療育、工作，一路到老後的生活。這集會聊楊處長在心路的日常，以及社福這行真實的樣子。</p>
+        <div class="sub">心路的幾件事</div>
+        <ul class="points">
+          <li>全台 40 個據點，每年服務超過 7,000 位障礙者與家庭。</li>
+          <li>1990 年成立只住 20 人的社區家園，把障礙者從高牆裡的教養院帶回社區，也推動了小型機構立案的修法。</li>
+          <li>心智障礙者普遍比一般人早約 20 年老化，所以心路也照顧中高齡的大朋友。</li>
+        </ul>
+        <div class="actions">
+          <a class="give" href="https://www.syinlu.org.tw/donation/donate/fill_data?utm_source=podcast&amp;utm_medium=show_page&amp;utm_campaign=yuanlai_syinlu">前往心路官網捐款 ↗</a>
+          <a href="https://www.syinlu.org.tw/?utm_source=podcast&amp;utm_medium=show_page&amp;utm_campaign=yuanlai_syinlu">心路基金會官網 ↗</a>
+        </div>
+        <p class="note">捐款在心路基金會官網完成，本節目不經手任何款項。</p>
+        <div class="src">資料來源：心路基金會、<a href="https://cna.com.tw/postwrite/chi/417657">中央社</a>、<a href="https://www.moneyweekly.com.tw/_Article?AID=80693">理財周刊</a></div>
+      </div>
+    </article>
+
+    <!-- EP4 -->
+    <article class="ep" id="ep4">
+      <div class="ep-head">
+        <div class="meta"><span class="no">EP4</span><span class="badge">即將上架</span></div>
+        <h3>把科學變好玩：經營一座四十多年的樂園</h3>
+        <div class="who">
+          <div><b>郭明宗</b><span>小叮噹科學主題樂園 總經理</span></div>
+        </div>
+      </div>
+      <div class="ep-body">
+        <p>小叮噹在新竹新豐，1979 年開幕，是很多新竹人小時候的回憶。郭明宗總經理帶著這座老樂園持續升級，用「科學變好玩」的理念，讓親子邊玩邊學。</p>
+        <div class="sub">小叮噹的幾件事</div>
+        <ul class="points">
+          <li>全台唯一以戶外自然科學為主題的大型遊樂園，占地約 30 公頃。</li>
+          <li>有全台最大的室內滑雪場，零下 5℃，一年四季都能玩雪。</li>
+          <li>新竹縣第一家取得環境教育設施場所認證的民營園區。</li>
+        </ul>
+        <div class="actions">
+          <a class="listen" href="https://www.youtube.com/@WYDZP">▶ 收聽這集</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%B0%8F%E5%8F%AE%E5%99%B9%E7%A7%91%E5%AD%B8%E4%B8%BB%E9%A1%8C%E6%A8%82%E5%9C%92">小叮噹科學主題樂園（地圖）↗</a>
+        </div>
+        <div class="src">資料來源：<a href="https://news.ltn.com.tw/news/life/breakingnews/5317170">自由時報</a>、<a href="https://supertaste.tvbs.com.tw/esg/355813">TVBS 食尚玩家</a>、<a href="https://en.wikipedia.org/wiki/Little_Ding-Dong_Science_Theme_Park">Wikipedia</a></div>
+      </div>
+    </article>
+
+    <!-- EP3 -->
+    <article class="ep" id="ep3">
+      <div class="ep-head">
+        <div class="meta"><span class="no">EP3</span><span>2026.11.15</span></div>
+        <h3>無人機不只是空拍？帶你看飛行背後的研究</h3>
+        <div class="who">
+          <div><b>葉時昊 Hank Yeh</b><span>工研院 資訊與通訊研究所 副經理</span></div>
+        </div>
+      </div>
+      <div class="ep-body">
+        <p>葉時昊在工研院資通所做無人機研究。他的團隊做的是「AI 無人機隊」，讓無人機自己飛、自己拍，再用人工智慧看懂拍回來的畫面。</p>
+        <div class="sub">他們的無人機在做什麼</div>
+        <ul class="points">
+          <li>鑽到橋底下拍照，用 AI 找出橋梁的問題，檢測人員不用冒險爬上去。</li>
+          <li>在路口上空分析車流、找出容易出車禍的地方，已在全台 12 個縣市、69 個路口測試。</li>
+          <li>幫遠洋漁船找魚群，任務完成自己飛回船上，比用直升機找魚省很多錢。</li>
+        </ul>
+        <div class="actions">
+          <a class="listen" href="https://www.youtube.com/@WYDZP">▶ 收聽這集</a>
+          <a href="https://www.itri.org.tw/">工研院官網 ↗</a>
+        </div>
+        <div class="src">資料來源：<a href="https://www.taiwannews.com.tw/zh/news/6042572">台灣英文新聞</a>（轉述中央社報導）</div>
+      </div>
+    </article>
+
+    <!-- EP2 -->
+    <article class="ep" id="ep2">
+      <div class="ep-head">
+        <div class="meta"><span class="no">EP2</span><span>2026.11.07</span></div>
+        <h3>原來米要這樣選！碾米廠二代的接班心聲</h3>
+        <div class="who">
+          <div><b>劉柏良</b><span>老永昌碾米廠 第五代執行長</span></div>
+        </div>
+      </div>
+      <div class="ep-body">
+        <p>老永昌是新竹新埔一家超過百年的碾米廠。劉柏良讀電子工程，2015 年畢業後回家接班，同學多半進了台積電，他決定把家裡的米廠做得不一樣。</p>
+        <div class="sub">他接班後做的事</div>
+        <ul class="points">
+          <li>幫米廠申請 ISO 22000、HACCP 和產銷履歷，他覺得食品廠都要驗證，碾米廠不該例外。</li>
+          <li>公開自己的通路和商業模式，多賺的就分給契作農民，跟農民從壓價變成合作。</li>
+          <li>現在是北北基國、高中營養午餐米飯的最大供應商，米也賣到了日本。</li>
+        </ul>
+        <div class="actions">
+          <a class="listen" href="https://www.youtube.com/@WYDZP">▶ 收聽這集</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=%E8%80%81%E6%B0%B8%E6%98%8C%E5%95%86%E8%A1%8C">老永昌商行（地圖）↗</a>
+        </div>
+        <div class="src">資料來源：<a href="https://technews.tw/?p=1413162">今周刊（科技新報轉載）</a>、<a href="https://www.ctee.com.tw/news/20250720700009-430503">工商時報</a></div>
+      </div>
+    </article>
+
+    <!-- EP1 -->
+    <article class="ep" id="ep1">
+      <div class="ep-head">
+        <div class="meta"><span class="no">EP1</span><span>2026.11.04</span></div>
+        <h3>你以為他在賣家具，其實他在解決的是……</h3>
+        <div class="who">
+          <div><b>林宇凡</b><span>MR. LIVING 居家先生 共同創辦人</span></div>
+        </div>
+      </div>
+      <div class="ep-body">
+        <p>居家先生是幾個國中同學放棄百萬年薪一起創的家具品牌。他們想解決的問題很簡單：好家具為什麼要這麼貴？</p>
+        <div class="sub">居家先生的做法</div>
+        <ul class="points">
+          <li>跳過層層代理和經銷，直接跟全球的設計家具製造商合作，讓北歐設計用合理的價格賣到消費者手上。</li>
+          <li>品牌走到第九年，累積銷售突破 30 億元，服務超過 9 萬個家庭。</li>
+          <li>新莊 3.0 旗艦店有 414 坪，裡面蓋了真實比例的樣品屋和咖啡廳，讓人走進去感受住起來的樣子。</li>
+        </ul>
+        <div class="actions">
+          <a class="listen" href="https://www.youtube.com/@WYDZP">▶ 收聽這集</a>
+          <a href="https://www.mrliving.com.tw/">居家先生官網 ↗</a>
+        </div>
+        <div class="src">資料來源：<a href="https://www.storm.mg/article/11071945">風傳媒</a>、<a href="https://www.ctee.com.tw/news/20251007700181-439901">工商時報</a>、<a href="https://n.yam.com/Article/20250616187107">威傳媒</a></div>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <div><b>原來你在做這個</b>｜每一集，認識一個人在做的事</div>
+    <div>想推薦來賓或合作：LINE twalvin</div>
+  </footer>
+
+</div>
+</body>
+</html>
