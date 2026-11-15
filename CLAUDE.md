@@ -1,6 +1,6 @@
 # 原來你在做這個 — Podcast 網站
 
-主持人：子柏（曾子柏）。這個 repo 是節目的官方網站，用 GitHub Pages 架站，之後會接上網域 wydzp.com（尚未購買）。
+主持人：子柏（曾子柏）。這個 repo 是節目的官方網站，用 GitHub Pages 架站。GitHub 專案在 wydzp 組織底下：wydzp/wydzp.github.io（主持人個人帳號是組織管理員；不要搬回個人帳號，網址不要露出個人帳號名稱）。正式網址 https://wydzp.github.io/ ，之後會接上網域 wydzp.com（尚未購買）。push 到 main 就自動上線。
 
 ## 結構
 - `index.html`：整個網站，單一檔案（HTML + CSS 都在裡面，沒有 build 步驟）。
