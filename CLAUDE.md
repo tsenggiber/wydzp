@@ -33,7 +33,9 @@
 - EP2 在 Firstory（同步到 Spotify / Apple）的標題還寫「碾米廠二代」，要到 Firstory 後台改成「第五代」。YouTube 和網站已改好。
 - EP4 正式標題、上架日期。
 - 老永昌、小叮噹的官網或粉專網址。
-- 買好 wydzp.com 後：加 `CNAME` 檔（內容 `wydzp.com`），在註冊商設定 DNS 指向 GitHub Pages。
+- 買好 wydzp.com 後：加 `CNAME` 檔（內容 `wydzp.com`），在註冊商設定 DNS 指向 GitHub Pages；index.html 的 canonical、og:url、JSON-LD url 和 robots.txt、sitemap.xml 裡的網址都要改成 https://wydzp.com/。
+- 有節目封面圖後：加 og:image（建議 1200×630）並把 twitter:card 改成 summary_large_image。
+- Google Search Console 還沒設定（要主持人登入 Google）。
 
 ## 內容原則
 - 來賓資料只寫查得到出處或來賓本人確認過的內容，每張卡片底下列資料來源。
