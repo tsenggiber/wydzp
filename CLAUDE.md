@@ -47,4 +47,4 @@
 ## 流量統計
 - Google Analytics 4：資源「原來你在做這個 網站」，評估 ID `G-GZ92BTD366`（放在 index.html 的 <head>）。開了「加強型評估」，平台按鈕、來賓官網等外部連結的點擊會自動記成 click 事件（看「事件」報表的 click，或「外連點擊」）。
 - 同一個 GA 帳戶裡另有「保險試算」的資源，不要搞混。
-- Search Console 已連結（若連結成功），可在 GA 的「Search Console」報表看搜尋曝光。
+- Search Console 已連結（2026-11-18）。GA 後台網址：https://analytics.google.com/analytics/web/#/a400413073p565032557/reports/intelligenthome
