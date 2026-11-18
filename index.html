@@ -123,6 +123,8 @@ h2{font-family:var(--display);font-weight:900;font-size:24px;margin:0;text-wrap:
 .src a{color:var(--muted)}
 
 .ep.soon .ep-head{background:var(--tint)}
+.sched{align-self:flex-start;margin:2px 0 0;font-size:14px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--signal);color:var(--signal-ink)}
+.actions .soon-note{display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border-radius:10px;font-weight:700;font-size:14px;border:1px dashed var(--line);color:var(--muted)}
 .badge{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--signal);color:var(--signal-ink);letter-spacing:.06em}
 .note{font-size:13px;color:var(--muted)}
 
@@ -140,6 +142,7 @@ footer b{color:var(--ink)}
     <h1>原來你在做這個</h1>
     <p class="lead">每一集找一位在自己行業裡認真做事的人，聊他每天在做什麼、這行真實的樣子。</p>
     <p class="host">主持人 子柏</p>
+    <p class="sched">每週六更新</p>
   </header>
 
   <nav class="platforms" aria-label="選擇收聽平台">
@@ -157,17 +160,42 @@ footer b{color:var(--ink)}
   <section class="eps" aria-labelledby="h-eps">
     <h2 id="h-eps">每一集的來賓</h2>
     <div class="jump" aria-label="跳到集數">
-      <a href="#ep4">EP4 樂園</a>
+      <a href="#ep4">EP4 樂園（下集）</a>
       <a href="#ep3">EP3 無人機</a>
       <a href="#ep2">EP2 碾米廠</a>
       <a href="#ep1">EP1 家具</a>
-      <a href="#next">預告</a>
+      <a href="#next">後續預告</a>
     </div>
 
-    <!-- 下一集 -->
+    <!-- EP4（下集） -->
+    <article class="ep soon" id="ep4">
+      <div class="ep-head">
+        <div class="meta"><span class="no">EP4</span><span class="badge">下集預告</span></div>
+        <h3>把科學變好玩：經營一座四十多年的樂園</h3>
+        <div class="who">
+          <div><b>郭明宗</b><span>小叮噹科學主題樂園 總經理</span></div>
+        </div>
+      </div>
+      <div class="ep-body">
+        <p>小叮噹在新竹新豐，1979 年開幕，是很多新竹人小時候的回憶。郭明宗總經理帶著這座老樂園持續升級，用「科學變好玩」的理念，讓親子邊玩邊學。</p>
+        <div class="sub">小叮噹的幾件事</div>
+        <ul class="points">
+          <li>全台唯一以戶外自然科學為主題的大型遊樂園，占地約 30 公頃。</li>
+          <li>有全台最大的室內滑雪場，零下 5℃，一年四季都能玩雪。</li>
+          <li>新竹縣第一家取得環境教育設施場所認證的民營園區。</li>
+        </ul>
+        <div class="actions">
+          <span class="soon-note">週六上架後開放收聽</span>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%B0%8F%E5%8F%AE%E5%99%B9%E7%A7%91%E5%AD%B8%E4%B8%BB%E9%A1%8C%E6%A8%82%E5%9C%92">小叮噹科學主題樂園（地圖）↗</a>
+        </div>
+        <div class="src">資料來源：<a href="https://news.ltn.com.tw/news/life/breakingnews/5317170">自由時報</a>、<a href="https://supertaste.tvbs.com.tw/esg/355813">TVBS 食尚玩家</a>、<a href="https://en.wikipedia.org/wiki/Little_Ding-Dong_Science_Theme_Park">Wikipedia</a></div>
+      </div>
+    </article>
+
+    <!-- 後續預告 -->
     <article class="ep soon" id="next">
       <div class="ep-head">
-        <div class="meta"><span class="no">預告</span><span class="badge">準備中</span></div>
+        <div class="meta"><span class="no">後續預告</span><span class="badge">準備中</span></div>
         <h3>陪一個家走很長的路：心路基金會在做什麼？</h3>
         <div class="who">
           <div><b>楊玉玲</b><span>心路社會福利基金會 處長</span></div>
@@ -187,31 +215,6 @@ footer b{color:var(--ink)}
         </div>
         <p class="note">捐款在心路基金會官網完成，本節目不經手任何款項。</p>
         <div class="src">資料來源：心路基金會、<a href="https://cna.com.tw/postwrite/chi/417657">中央社</a>、<a href="https://www.moneyweekly.com.tw/_Article?AID=80693">理財周刊</a></div>
-      </div>
-    </article>
-
-    <!-- EP4 -->
-    <article class="ep" id="ep4">
-      <div class="ep-head">
-        <div class="meta"><span class="no">EP4</span><span class="badge">即將上架</span></div>
-        <h3>把科學變好玩：經營一座四十多年的樂園</h3>
-        <div class="who">
-          <div><b>郭明宗</b><span>小叮噹科學主題樂園 總經理</span></div>
-        </div>
-      </div>
-      <div class="ep-body">
-        <p>小叮噹在新竹新豐，1979 年開幕，是很多新竹人小時候的回憶。郭明宗總經理帶著這座老樂園持續升級，用「科學變好玩」的理念，讓親子邊玩邊學。</p>
-        <div class="sub">小叮噹的幾件事</div>
-        <ul class="points">
-          <li>全台唯一以戶外自然科學為主題的大型遊樂園，占地約 30 公頃。</li>
-          <li>有全台最大的室內滑雪場，零下 5℃，一年四季都能玩雪。</li>
-          <li>新竹縣第一家取得環境教育設施場所認證的民營園區。</li>
-        </ul>
-        <div class="actions">
-          <a class="listen" href="https://www.youtube.com/@WYDZP">▶ 收聽這集</a>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%B0%8F%E5%8F%AE%E5%99%B9%E7%A7%91%E5%AD%B8%E4%B8%BB%E9%A1%8C%E6%A8%82%E5%9C%92">小叮噹科學主題樂園（地圖）↗</a>
-        </div>
-        <div class="src">資料來源：<a href="https://news.ltn.com.tw/news/life/breakingnews/5317170">自由時報</a>、<a href="https://supertaste.tvbs.com.tw/esg/355813">TVBS 食尚玩家</a>、<a href="https://en.wikipedia.org/wiki/Little_Ding-Dong_Science_Theme_Park">Wikipedia</a></div>
       </div>
     </article>
 
